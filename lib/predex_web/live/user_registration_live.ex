@@ -6,18 +6,7 @@ defmodule PredexWeb.UserRegistrationLive do
 
   def render(assigns) do
     ~H"""
-    <div class="mx-auto max-w-sm">
-      <.header class="text-center">
-        Register for an account
-        <:subtitle>
-          Already registered?
-          <.link navigate={~p"/users/log_in"} class="font-semibold text-brand hover:underline">
-            Log in
-          </.link>
-          to your account now.
-        </:subtitle>
-      </.header>
-
+    <div class="mx-auto max-w-md">
       <.simple_form
         for={@form}
         id="registration_form"
@@ -35,9 +24,15 @@ defmodule PredexWeb.UserRegistrationLive do
         <.input field={@form[:password]} type="password" label="Password" required />
 
         <:actions>
-          <.button phx-disable-with="Creating account..." class="w-full">Create an account</.button>
+          <.button phx-disable-with="Creating account..." class="w-full">Register</.button>
         </:actions>
       </.simple_form>
+      <div class="mt-8 text-center">
+        Already registered?
+        <.link navigate={~p"/users/log_in"} class="font-semibold hover:underline hover:text-zinc-700">
+          Log In
+        </.link>
+      </div>
     </div>
     """
   end

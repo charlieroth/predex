@@ -15,13 +15,13 @@ defmodule PredexWeb.UserForgotPasswordLive do
         <.input field={@form[:email]} type="email" placeholder="Email" required />
         <:actions>
           <.button phx-disable-with="Sending..." class="w-full">
-            Send password reset instructions
+            Send
           </.button>
         </:actions>
       </.simple_form>
       <p class="text-center text-sm mt-4">
-        <.link href={~p"/users/register"}>Register</.link>
-        | <.link href={~p"/users/log_in"}>Log in</.link>
+        <.link href={~p"/users/register"} class="font-semibold hover:underline">Register</.link>
+        | <.link href={~p"/users/log_in"} class="font-semibold hover:underline">Log In</.link>
       </p>
     </div>
     """

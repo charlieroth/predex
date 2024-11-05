@@ -4,7 +4,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="csrf-token" content={get_csrf_token()} />
-    <.live_title suffix=" · Phoenix Framework">
+    <.live_title>
       <%= assigns[:page_title] || "Predex" %>
     </.live_title>
     <link phx-track-static rel="stylesheet" href={~p"/assets/app.css"} />
@@ -12,47 +12,49 @@
     </script>
   </head>
   <body class="bg-white">
-    <ul class="relative z-10 flex items-center gap-4 px-4 sm:px-6 lg:px-8 justify-end">
-      <%= if @current_user do %>
-        <li class="text-[0.8125rem] leading-6 text-zinc-900">
-          <%= @current_user.email %>
-        </li>
-        <li>
-          <.link
-            href={~p"/users/settings"}
-            class="text-[0.8125rem] leading-6 text-zinc-900 font-semibold hover:text-zinc-700"
-          >
-            Settings
+    <header class="absolute inset-x-0 top-0 z-50">
+      <nav class="flex items-center justify-between p-6 lg:px-8" aria-label="Global">
+        <div class="flex lg:flex-1">
+          <.link href={~p"/"} class="-m-1.5 p-1.5">
+            <span class="sr-only">Predex</span>
+            <div class="flex items-center gap-2">
+              <.icon name="hero-globe-alt" class="size-8" />
+              <p class="font-semibold text-md">Predex</p>
+            </div>
           </.link>
-        </li>
-        <li>
-          <.link
-            href={~p"/users/log_out"}
-            method="delete"
-            class="text-[0.8125rem] leading-6 text-zinc-900 font-semibold hover:text-zinc-700"
-          >
-            Log out
-          </.link>
-        </li>
-      <% else %>
-        <li>
-          <.link
-            href={~p"/users/register"}
-            class="text-[0.8125rem] leading-6 text-zinc-900 font-semibold hover:text-zinc-700"
-          >
-            Register
-          </.link>
-        </li>
-        <li>
-          <.link
-            href={~p"/users/log_in"}
-            class="text-[0.8125rem] leading-6 text-zinc-900 font-semibold hover:text-zinc-700"
-          >
-            Log in
-          </.link>
-        </li>
-      <% end %>
-    </ul>
+        </div>
+        <div class="lg:flex lg:gap-x-12"></div>
+        <div class="lg:flex lg:flex-1 lg:justify-end gap-2">
+          <%= if @current_user do %>
+            <.link
+              href={~p"/markets"}
+              class="text-md font-semibold hover:bg-zinc-700 hover:text-white rounded-md border-2 border-zinc-700 p-2"
+            >
+              Markets
+            </.link>
+            <.link
+              href={~p"/users/log_out"}
+              class="text-md font-semibold hover:bg-zinc-700 hover:text-white rounded-md border-2 border-zinc-700 p-2"
+            >
+              Log Out
+            </.link>
+          <% else %>
+            <.link
+              href={~p"/users/log_in"}
+              class="text-md font-semibold hover:bg-zinc-700 hover:text-white rounded-md border-2 border-zinc-700 p-2"
+            >
+              Log In
+            </.link>
+            <.link
+              href={~p"/users/register"}
+              class="text-md font-semibold hover:bg-zinc-700 hover:text-white rounded-md border-2 border-zinc-700 p-2"
+            >
+              Register
+            </.link>
+          <% end %>
+        </div>
+      </nav>
+    </header>
     <%= @inner_content %>
   </body>
 </html>

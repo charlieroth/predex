@@ -5,7 +5,7 @@ defmodule PredexWeb.UserResetPasswordLive do
 
   def render(assigns) do
     ~H"""
-    <div class="mx-auto max-w-sm">
+    <div class="mx-auto max-w-md">
       <.header class="text-center">Reset Password</.header>
 
       <.simple_form
@@ -30,9 +30,9 @@ defmodule PredexWeb.UserResetPasswordLive do
         </:actions>
       </.simple_form>
 
-      <p class="text-center text-sm mt-4">
-        <.link href={~p"/users/register"}>Register</.link>
-        | <.link href={~p"/users/log_in"}>Log in</.link>
+      <p class="text-center text-md mt-4">
+        <.link href={~p"/users/register"} class="font-semibold hover:underline">Register</.link>
+        | <.link href={~p"/users/log_in"} class="font-semibold hover:underline">Log in</.link>
       </p>
     </div>
     """
